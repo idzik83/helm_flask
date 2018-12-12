@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - image: {{ .Values.services.flask_app.image }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: {{ .Values.services.flask_app.name }}
         ports:
         - containerPort: {{ .Values.services.flask_app.service_port }}

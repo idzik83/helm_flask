@@ -9,4 +9,7 @@ spec:
   selector:
     name: {{ .Values.services.flask_app.name }}
   ports:
-    - port: {{ .Values.services.flask_app.service_port}}
+    - port: 80
+      targetPort: {{ .Values.services.flask_app.service_port}}
+      protocol: TCP
+      name: http
