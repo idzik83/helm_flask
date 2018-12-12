@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.services.flask_app.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.services.flask_app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.services.flask_app.name }}
+    spec:
+      containers:
+      - image: {{ .Values.services.flask_app.image }}
+        imagePullPolicy: IfNotPresent
+        name: {{ .Values.services.flask_app.name }}
+        ports:
+        - containerPort: {{ .Values.services.flask_app.service_port }}
+          name: http
+          protocol: TCP
+        env:
+        - name: FLASK_PORT
+          value: {{ .Values.services.flask_app.service_port | quote }}

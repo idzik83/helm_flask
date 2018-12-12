@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.services.flask_app.name }}
+  labels:
+    name: {{ .Values.services.flask_app.name }}
+spec:
+  type: NodePort
+  selector:
+    name: {{ .Values.services.flask_app.name }}
+  ports:
+    - port: 8000
